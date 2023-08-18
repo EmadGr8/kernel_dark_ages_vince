@@ -22,15 +22,10 @@ jobs:
         arch: arm64                                   # Specify arch
         compiler: gcc/9                               # Specify toolchain to use
         defconfig: vince_defconfig                    # Specify defconfig to use
-        image: Image.gz-dtb
-    - name: Upload Release
-      id: upload_release_asset
-      uses: actions/upload-release-asset@v1.0.1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        image: Image.gz-dtb    
+    - name: Upload Kernel Artifact
+      uses: actions/upload-artifact@v2
       with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ${{steps.sign.outputs.signedReleaseFile}}
-        asset_name: kernel.zip
-        asset_content_type: zip
- 
+        name: Compiled Kernel
+        path: /kernels
+   
