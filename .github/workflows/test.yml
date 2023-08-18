@@ -24,7 +24,7 @@ jobs:
         defconfig: vince_defconfig                    # Specify defconfig to use
         image: Image.gz-dtb
     - name: Release build
-      uses: ncipollo/release-action@v1.12.0
+      uses: ncipollo/release-action
       with:
         artifacts: ${{ steps.build.outputs.outfile }}
         token: ${{ secrets.GITHUB_TOKEN }}
