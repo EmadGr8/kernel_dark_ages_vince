@@ -23,9 +23,10 @@ jobs:
         compiler: gcc/9                               # Specify toolchain to use
         defconfig: vince_defconfig                    # Specify defconfig to use
         image: Image.gz-dtb    
-    - name: Upload Kernel Artifact
+    - name: Upload Kernels
       uses: actions/upload-artifact@v2
       with:
-        name: Compiled Kernel
-        path: /kernels
+        name: Kernels Artifact
+        path: kernels
+   
    
