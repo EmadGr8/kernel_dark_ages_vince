@@ -1,7 +1,8 @@
 name: "Build Dark Ages kernel on darky."              # Description of the workflow.
 on:
   push:
-    branches: darky                                   # Branch to build.
+    branches:
+      - darky                                         # Branch to build.
   workflow_dispatch:                                  # Allow to manually trigger workflow.
 jobs:
   build:
@@ -22,9 +23,9 @@ jobs:
         compiler: gcc/9                               # Specify toolchain to use
         defconfig: vince_defconfig                    # Specify defconfig to use
         image: Image.gz-dtb
-     - name: Release build
-       uses: ncipollo/release-action@v1
-       with:
-         artifacts: ${{ steps.build.outputs.outfile }}
-         token: ${{ secrets.GITHUB_TOKEN }}
-
+    - name: Release build
+      uses: ncipollo/release-action@v1
+      with:
+        artifacts: ${{ steps.build.outputs.outfile }}
+        token: ${{ secrets.GITHUB_TOKEN }}
+ 
