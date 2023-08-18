@@ -23,9 +23,14 @@ jobs:
         compiler: gcc/9                               # Specify toolchain to use
         defconfig: vince_defconfig                    # Specify defconfig to use
         image: Image.gz-dtb
-    - name: Release build
-      uses: ncipollo/release-action@v1.10.0
+    - name: Upload Release
+      id: upload_release_asset
+      uses: actions/upload-release-asset@v1.0.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        artifacts: ${{ steps.build.outputs.outfile }}
-        token: ${{ secrets.GITHUB_TOKEN }}
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ${{steps.sign.outputs.signedReleaseFile}}
+        asset_name: kernel.zip
+        asset_content_type: zip
  
